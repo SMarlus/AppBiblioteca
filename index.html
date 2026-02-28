@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Escolar</title>
+    
+    <!-- Estilos puros (sem frameworks) -->
+    <link rel="stylesheet" href="style.css?v=3">
+    
+    <!-- Manifesto PWA -->
+    <link rel="manifest" href="manifest.json?v=3">
+    
+    <!-- Fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cabeçalho do Aplicativo -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1>Biblioteca Escolar</h1>
+        </div>
+    </header>
+
+    <!-- Área Principal de Conteúdo -->
+    <main class="container">
+        
+        <!-- Navegação Principal por Abas -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-target="tab-livros">Livros</button>
+            <button class="tab-btn" data-target="tab-alunos">Alunos</button>
+            <button class="tab-btn" data-target="tab-emprestimos">Empréstimos</button>
+            <button class="tab-btn" data-target="tab-config">Configurações</button>
+        </nav>
+
+        <div class="content-area">
+            <!-- ==========================================
+                 ABA: LIVROS
+                 ========================================== -->
+            <section id="tab-livros" class="tab-content active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Gerenciar Livros</h2>
+                        <p class="subtitle">Cadastre e atualize o acervo da biblioteca.</p>
+                    </div>
+                    <div class="card-body">
+                        <!-- Formulário de Cadastro/Edição de Livro -->
+                        <form id="form-livro" class="card-form">
+                            <input type="hidden" id="livro-id">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="livro-titulo">Título do Livro</label>
+                                    <input type="text" id="livro-titulo" required placeholder="Ex: Dom Casmurro">
+                                </div>
+                                <div class="form-group">
+                                    <label for="livro-autor">Autor</label>
+                                    <input type="text" id="livro-autor" required placeholder="Ex: Machado de Assis">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="livro-isbn">ISBN</label>
+                                    <input type="text" id="livro-isbn" required placeholder="Ex: 978-85-00000-00-0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="livro-qtd">Quantidade Total</label>
+                                    <input type="number" id="livro-qtd" min="1" required placeholder="Ex: 5">
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Salvar Livro</button>
+                                <button type="button" class="btn btn-secondary hidden" id="btn-cancelar-livro">Cancelar Edição</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h2>Acervo Cadastrado</h2>
+                    </div>
+                    <div class="card-body p-0">
+                        <!-- Tabela de Listagem de Livros -->
+                        <div class="table-responsive">
+                            <table id="tabela-livros">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Autor</th>
+                                        <th>ISBN</th>
+                                        <th>Disp / Total</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Linhas preenchidas dinamicamente via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 ABA: ALUNOS
+                 ========================================== -->
+            <section id="tab-alunos" class="tab-content hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Gerenciar Alunos</h2>
+                        <p class="subtitle">Cadastre e atualize os alunos da instituição.</p>
+                    </div>
+                    <div class="card-body">
+                        <!-- Formulário de Cadastro/Edição de Aluno -->
+                        <form id="form-aluno" class="card-form">
+                            <input type="hidden" id="aluno-id">
+                            
+                            <div class="form-group">
+                                <label for="aluno-nome">Nome Completo</label>
+                                <input type="text" id="aluno-nome" required placeholder="Ex: João da Silva">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="aluno-matricula">Matrícula</label>
+                                    <input type="text" id="aluno-matricula" required placeholder="Ex: 2023001">
+                                </div>
+                                <div class="form-group">
+                                    <label for="aluno-turma">Turma</label>
+                                    <input type="text" id="aluno-turma" required placeholder="Ex: 1º Ano A">
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Salvar Aluno</button>
+                                <button type="button" class="btn btn-secondary hidden" id="btn-cancelar-aluno">Cancelar Edição</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h2>Alunos Cadastrados</h2>
+                    </div>
+                    <div class="card-body p-0">
+                        <!-- Tabela de Listagem de Alunos -->
+                        <div class="table-responsive">
+                            <table id="tabela-alunos">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Matrícula</th>
+                                        <th>Turma</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Linhas preenchidas dinamicamente via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 ABA: EMPRÉSTIMOS
+                 ========================================== -->
+            <section id="tab-emprestimos" class="tab-content hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Registrar Empréstimo</h2>
+                        <p class="subtitle">Vincule um livro disponível a um aluno.</p>
+                    </div>
+                    <div class="card-body">
+                        <!-- Formulário de Registro de Empréstimo -->
+                        <form id="form-emprestimo" class="card-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="emprestimo-livro">Livro</label>
+                                    <select id="emprestimo-livro" required>
+                                        <option value="">Selecione um livro disponível...</option>
+                                        <!-- Opções preenchidas dinamicamente -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emprestimo-aluno">Aluno</label>
+                                    <select id="emprestimo-aluno" required>
+                                        <option value="">Selecione um aluno...</option>
+                                        <!-- Opções preenchidas dinamicamente -->
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="emprestimo-data-prevista">Data Prevista de Devolução</label>
+                                <input type="date" id="emprestimo-data-prevista" required>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Registrar Empréstimo</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h2>Histórico de Empréstimos</h2>
+                    </div>
+                    <div class="card-body p-0">
+                        <!-- Tabela de Listagem de Empréstimos -->
+                        <div class="table-responsive">
+                            <table id="tabela-emprestimos">
+                                <thead>
+                                    <tr>
+                                        <th>Livro</th>
+                                        <th>Aluno</th>
+                                        <th>Data Emp.</th>
+                                        <th>Prev. Dev.</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Linhas preenchidas dinamicamente via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 ABA: CONFIGURAÇÕES & BACKUP
+                 ========================================== -->
+            <section id="tab-config" class="tab-content hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Configurações e Backup</h2>
+                        <p class="subtitle">Gerencie os dados do sistema.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="config-grid">
+                            <div class="config-item">
+                                <h3>Exportar Dados</h3>
+                                <p>Baixe um backup completo de todos os registros da biblioteca.</p>
+                                <button type="button" class="btn btn-primary" id="btn-exportar">Exportar Backup</button>
+                            </div>
+
+                            <div class="config-item">
+                                <h3>Importar Dados</h3>
+                                <p>Restaure um backup anterior. <strong>Atenção:</strong> Isso substituirá todos os dados atuais.</p>
+                                <input type="file" id="input-importar" accept=".json" style="display: none;">
+                                <button type="button" class="btn btn-danger" onclick="document.getElementById('input-importar').click()">Importar Backup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Botão Oculto para Testes -->
+    <button id="btn-testes-oculto" class="hidden-btn" title="Executar Testes Internos"></button>
+
+    <!-- Modal de Testes -->
+    <div id="test-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('test-modal').classList.add('hidden')">&times;</span>
+            <div id="test-results-content"></div>
+        </div>
+    </div>
+
+    <!-- Container para Feedback Visual (Toasts de Sucesso/Erro) -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts da Aplicação -->
+    <script src="db.js?v=3"></script>
+    <script src="script.js?v=3"></script>
+    <script src="tests.js?v=3"></script>
+</body>
+</html>
