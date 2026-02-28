@@ -1,0 +1,104 @@
+{
+  "versao": "1.0",
+  "dataExportacao": "2026-02-28T16:30:00.000Z",
+  "totalRegistros": 12,
+  "livros": [
+    {
+      "titulo": "Dom Casmurro",
+      "autor": "Machado de Assis",
+      "isbn": "9788508153619",
+      "quantidadeTotal": 5,
+      "quantidadeDisponivel": 3,
+      "id": 1
+    },
+    {
+      "titulo": "O Pequeno Príncipe",
+      "autor": "Antoine de Saint-Exupéry",
+      "isbn": "9788522031420",
+      "quantidadeTotal": 10,
+      "quantidadeDisponivel": 10,
+      "id": 2
+    },
+    {
+      "titulo": "Harry Potter e a Pedra Filosofal",
+      "autor": "J.K. Rowling",
+      "isbn": "9788532530783",
+      "quantidadeTotal": 3,
+      "quantidadeDisponivel": 2,
+      "id": 3
+    },
+    {
+      "titulo": "A Revolução dos Bichos",
+      "autor": "George Orwell",
+      "isbn": "9788535909555",
+      "quantidadeTotal": 7,
+      "quantidadeDisponivel": 7,
+      "id": 4
+    }
+  ],
+  "alunos": [
+    {
+      "nome": "Ana Clara Silva",
+      "matricula": "2026001",
+      "turma": "1º Ano A",
+      "id": 1
+    },
+    {
+      "nome": "João Pedro Souza",
+      "matricula": "2026002",
+      "turma": "2º Ano B",
+      "id": 2
+    },
+    {
+      "nome": "Maria Fernanda Costa",
+      "matricula": "2026003",
+      "turma": "3º Ano C",
+      "id": 3
+    },
+    {
+      "nome": "Lucas Almeida",
+      "matricula": "2026004",
+      "turma": "1º Ano B",
+      "id": 4
+    }
+  ],
+  "emprestimos": [
+    {
+      "idLivro": 1,
+      "idAluno": 1,
+      "dataEmprestimo": "2026-02-20",
+      "dataPrevistaDevolucao": "2026-02-27",
+      "dataDevolucaoReal": null,
+      "status": "ativo",
+      "id": 1
+    },
+    {
+      "idLivro": 3,
+      "idAluno": 2,
+      "dataEmprestimo": "2026-02-25",
+      "dataPrevistaDevolucao": "2026-03-04",
+      "dataDevolucaoReal": null,
+      "status": "ativo",
+      "id": 2
+    },
+    {
+      "idLivro": 1,
+      "idAluno": 3,
+      "dataEmprestimo": "2026-02-10",
+      "dataPrevistaDevolucao": "2026-02-17",
+      "dataDevolucaoReal": "2026-02-15",
+      "status": "devolvido",
+      "id": 3
+    },
+    {
+      "idLivro": 4,
+      "idAluno": 4,
+      "dataEmprestimo": "2026-01-15",
+      "dataPrevistaDevolucao": "2026-01-22",
+      "dataDevolucaoReal": "2026-01-25",
+      "status": "devolvido",
+      "id": 4
+    }
+  ],
+  "checksum": "16c14"
+}
